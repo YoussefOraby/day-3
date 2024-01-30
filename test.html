@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gammal Tech</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #3498db, #2ecc71);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .button-logo {
+    border: none;
+    background-color: #4caf70; 
+    padding: 0px 1%; 
+    text-align: right;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    position: absolute;
+    top: 25%;
+    transform: translateY(-50%);
+    right: 0; /* Adjusted to align to the right side */
+    left: auto;
+}
+
+.button-logo img {
+    height: 20px; 
+    width: 20px;
+    margin-right: 10px; 
+    vertical-align: left;
+}
+.button-logo:nth-child(1) {
+    right: -300px; /* Adjusted to shift 3 logo buttons to the left by 20px */
+}
+.button-logo:nth-child(2) {
+    right: -30px; /* Adjusted to shift 3 logo buttons to the left by 20px */
+}
+
+.button-logo:nth-child(3) {
+    right: 70px; /* Adjusted to shift 3 logo buttons to the left by 30px */
+}
+
+
+    .Orabi {
+        background: linear-gradient(135deg, #3498db, #2ecc71);
+        color: white;
+        padding: 10px;
+        text-align: left;
+        border-radius: 8px;
+        position: fixed;
+        margin-top: auto;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 50px;
+    }
+    
+
+    .Orabi-content {
+      position: relative;
+      padding: 10px; 
+    }
+    .form-section {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+        .multi-step-form {
+    background-color: #fff;
+    padding: 70px; /* Increase padding as needed */
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    width: 700px; /* Adjust width as needed */
+    text-align: center;
+    margin: 40px auto; /* Increase margin as needed */
+    color: #333;
+    }
+
+/* Add more styles as needed */
+
+
+/* Add more styles as needed */
+
+
+        .timer-container {
+            position: fixed;
+            top: 55px; /* Adjust the distance from the top */
+            right: 20px; /* Adjust the distance from the right */
+            transform: translateY(-50%);
+            z-index: 1000;
+        }
+
+        .timer {
+            width: 80px;
+            height: 80px;
+            border-radius: 40%;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .fill {
+            background-color: #ffffff;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        }
+
+    .timer-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 48px;
+            color: transparent;
+            background-image: linear-gradient(135deg, #3498db, #2ecc71);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .container > div {
+            flex: 1;
+            margin: 0 20px; /* Adjust the margin as needed for enough space */
+        }
+
+        
+
+        .button-container {
+        text-align: center;
+        }
+
+        .button-container button {
+        font-size: 18px; /* Adjust font size as needed */
+        padding: 15px 30px; /* Adjust padding to increase button size */
+        background-color: #3498db; /* Add background color as needed */
+        color: #fff; /* Add text color as needed */
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease; /* Optional: Add a smooth transition effect */
+        margin-left: -350px; /* Adjust margin-left to move the button more towards the left */
+        }
+
+        .button-container button:hover {
+        background-color: #2ecc71; /* Change color on hover if desired */
+        }
+        .container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+    
+        width: 400px; /* Adjust width as needed */
+        text-align: center;
+        margin: auto;
+        }
+        .question {
+        position: absolute;
+        bottom: 70px; /* Adjust bottom spacing as needed */
+        left: 150px; /* Adjust left spacing as needed */
+        }
+
+        .question h2 {
+        margin: 0; /* Remove default margin for h2 */
+        }
+
+        .answer {
+        position: absolute;
+        top: 140px; /* Adjust top spacing as needed */
+        right: 300px; /* Adjust right spacing as needed */
+        }
+
+        .answer h2 {
+        margin-bottom: 10px; /* Add margin to the bottom of h3 */
+        }
+
+        .answer p {
+        margin: 0; /* Remove default margin for p elements */
+        }
+
+    </style>
+</head>
+<body id="b">
+
+    <div class="header">
+        <h1>Gammal Tech Exam</h1>
+    </div>
+    
+    <audio class="muted" autoplay>
+        <source src="tick.mp3" type="audio/mp3">
+        not supported
+    </audio>
+
+    <div class="bodyy">
+        <div class="timer-container">
+            <div class="timer" id="timer">
+                <div class="fill" id="fill"></div>
+                <div class="timer-text" id="timer-text"></div>
+            </div>
+        </div>
+    </div>
+
+
+    
+    
+        <!-- Step 1 -->
+        <div class="form-section active" id="1" onload="startTimer()">
+
+            <div class="container">
+
+                <div class="question">
+                    <h2>Question 1</h2><br>
+                    <img src="C:\Users\Youssef Orabi\Desktop\test\question.png" alt="not found">
+                </div>
+                
+                <div class="answer">
+                    <h2>Explain :</h2><br><h4>Define the Error :</h4><br><br>
+                <p><input type="checkbox"><strong>choice1</strong></p><br><br>
+                <p><input type="checkbox"><strong>choice2</strong></p><br><br>
+                <p><input type="checkbox"><strong>choice3</strong></p><br><br>
+                <p><input type="checkbox"><strong>choice4</strong></p><br><br>
+                <button type="button" onclick="nextStep('1', '2')"  class="button-container">Next</button>
+                </div>
+
+                
+
+            </div>
+
+        </div>
+
+        <!-- Step 2 -->
+        <div class="form-section" id="2" onload="startTimer()">
+            <div class="container">
+                <div class="question">
+                    <h2>Question 2</h2><br>
+                    <img src="C:\Users\Youssef Orabi\Desktop\test\question.png" alt="not found">
+                </div>
+                
+                <div class="answer">
+                    <h2>Explain :</h2><br><h4>Define the Error :</h4><br><br>
+                <p><input type="checkbox"><strong>choice1</strong></p><br><br>
+                <p><input type="checkbox"><strong>choice2</strong></p><br><br>
+                <p><input type="checkbox"><strong>choice3</strong></p><br><br>
+                <p><input type="checkbox"><strong>choice4</strong></p><br><br>
+                <button type="button" onclick="nextStep('2', '3')"  class="button-container">Next</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="form-section" id="3" onload="startTimer()">
+            <div class="container">
+                <div class="question">
+                    <h2>Question 3</h2><br>
+                    <img src="C:\Users\Youssef Orabi\Desktop\test\question.png" alt="not found">
+                </div>
+                
+                <div class="answer">
+                    <h2>Explain :</h2><br><h4>Define the Error :</h4><br><br>
+                <p><input type="checkbox"><strong>choice1</strong></p><br><br>
+                <p><input type="checkbox"><strong>choice2</strong></p><br><br>
+                <p><input type="checkbox"><strong>choice3</strong></p><br><br>
+                <p><input type="checkbox"><strong>choice4</strong></p><br><br>
+                <button type="button" onclick="nextStep('3', '4')"  class="button-container">Next</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section" id="4" onload="startTimer()">
+            <div class="container">
+                <div class="question">
+                    <h2>Question 4</h2><br>
+                    <img src="C:\Users\Youssef Orabi\Desktop\test\question.png" alt="not found">
+                </div>
+                
+                <div class="answer">
+                    <h2>Explain :</h2><br><h4>Define the Error :</h4><br><br>
+                <p><input type="checkbox"><strong>choice1</strong></p><br><br>
+                <p><input type="checkbox"><strong>choice2</strong></p><br><br>
+                <p><input type="checkbox"><strong>choice3</strong></p><br><br>
+                <p><input type="checkbox"><strong>choice4</strong></p><br><br>
+                <button type="button" onclick="nextStep('4', '5')"  class="button-container">Next</button>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="form-section" id="5" onload="startTimer()">
+            <div class="container">
+                <div class="question">
+                    <h2>Question 5</h2><br>
+                    <img src="C:\Users\Youssef Orabi\Desktop\test\question.png" alt="not found">
+                </div>
+                
+                <div class="answer">
+                    <h2>Explain :</h2><br><h4>Define the Error :</h4><br><br>
+                <p><input type="checkbox"><strong>choice1</strong></p><br><br>
+                <p><input type="checkbox"><strong>choice2</strong></p><br><br>
+                <p><input type="checkbox"><strong>choice3</strong></p><br><br>
+                <p><input type="checkbox"><strong>choice4</strong></p><br><br>
+                <button type="button" onclick="nextStep('5', '6')"  class="button-container">Next</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section" id="6" onload="startTimer()">
+
+            <div class="container">
+                <div class="question">
+                    <h2>Question 6</h2><br>
+                    <img src="C:\Users\Youssef Orabi\Desktop\test\question.png" alt="not found">
+                </div>
+                
+                <div class="answer">
+                <h2>Explain :</h2><br><h4>Define the Error :</h4><br><br>
+                <p><input type="checkbox"><strong>choice1</strong></p><br><br>
+                <p><input type="checkbox"><strong>choice2</strong></p><br><br>
+                <p><input type="checkbox"><strong>choice3</strong></p><br><br>
+                <p><input type="checkbox"><strong>choice4</strong></p><br><br>
+                <button type="button" onclick="nextStep('6', '7')"  class="button-container">Next</button>
+                </div>
+            </div>
+        </div>    
+    <script>
+
+document.addEventListener('DOMContentLoaded', function () {
+    const fillElement = document.getElementById('fill');
+    const timerTextElement = document.getElementById('timer-text');
+    let duration = 10;
+    let c = 1;
+    const tickSound = new Audio('tick.mp3');
+    let timerInterval;
+    function updateTimer() {
+        const percent = (duration / 10) * 100;
+        timerTextElement.innerText = duration;
+        duration--;
+        tickSound.play();
+        if (duration < 0) {
+            clearInterval(timerInterval);
+            document.body.style.backgroundColor = 'white';
+            nextStep(c.toString(), (++c).toString());
+            // Reset the timer to 10 seconds
+            // Start the timer again
+            startTimer();
+        }
+    }
+
+    timerInterval = setInterval(updateTimer, 1000);
+    updateTimer();
+});
+
+
+        function startTimer() {
+            let timer = 10; 
+            const timerInterval = setInterval(() => {
+                timer--;
+                console.log(timer);
+                if(timer==0){
+                    clearInterval(timerInterval);
+                    nextStep(c.toString(), (++c).toString());
+                }
+                startTimer();
+            }, 1000);
+        }
+        function sleep(ms) {
+            const start = Date.now();
+            while (Date.now() - start < ms) {}
+        }
+        function nextStep(currentStepId, nextStepId) {
+            document.body.style.backgroundColor = 'white';
+            document.getElementById(currentStepId).classList.remove('active');
+            sleep(100);
+            document.getElementById(nextStepId).classList.add('active');
+        }
+    </script>
+
+    
+    <br><br><br><br><br><br><br><br>
+    <div class="Orabi">
+        <div class="Orabi-content">
+          <h2>&copy;2024 Gammal Tech. All rights reserved.</h2><br>
+          
+          <button class="button-logo">
+              <a href="https://www.facebook.com/gammal.tech/" target="_blank">
+                  <img src="C:\Users\Youssef Orabi\Desktop\New folder (7)\facebook.png" alt="Facebook Logo">
+              </a>
+          </button>
+          <button class="button-logo">
+              <a href="https://twitter.com/i/flow/login?redirect_after_login=%2Fgammaltech" target="_blank">
+                  <img src="C:\Users\Youssef Orabi\Desktop\New folder (7)\twitter.png" alt="Twitter Logo">
+              </a>
+          </button>
+          <button class="button-logo">
+              <a href="https://twitter.com/i/flow/login?redirect_after_login=%2Fgammaltech" target="_blank">
+                  <img src="C:\Users\Youssef Orabi\Desktop\New folder (7)\instagram-symbol.png" alt="Instagram Logo">
+              </a>
+          </button>
+        </div>
+      </div>
+</body>
+</html>
